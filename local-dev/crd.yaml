@@ -1,0 +1,44 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: ats.cnat.programming-kubernetes.info
+spec:
+  group: cnat.programming-kubernetes.info
+  names:
+    kind: At
+    listKind: AtList
+    plural: ats
+    singular: at
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      additionalPrinterColumns: #(optional)
+        - name: "phase"
+          jsonPath: .status.phase
+          priority: 1
+          type: string
+        - name: "str"
+          jsonPath: .spec.str
+          priority: 0
+          type: string
+      subresources:
+        # status enables the status subresource.
+        status: { }
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                str:
+                  type: string
+                num:
+                  type: integer
+            status:
+              type: string
+              properties:
+                phase:
+                  type: string

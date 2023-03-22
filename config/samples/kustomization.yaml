@@ -1,0 +1,5 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- opendata_v1alpha1_crypto.yaml
+- opendata_v1alpha1_stock.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

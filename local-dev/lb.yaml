@@ -1,0 +1,29 @@
+# create lb is optional
+#
+# docs:
+# https://kind.sigs.k8s.io/docs/user/loadbalancer/
+#
+# cmd steps:
+# kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
+# kubectl wait --namespace metallb-system \
+#                --for=condition=ready pod \
+#                --selector=app=metallb \
+#                --timeout=90s
+#
+# get ip range from these command and replace the ip range below:
+# docker network inspect -f '{{.IPAM.Config}}' kind
+#
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: example
+  namespace: metallb-system
+spec:
+  addresses:
+    - 172.18.255.100-172.18.255.250
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: empty
+  namespace: metallb-system

@@ -1,0 +1,59 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - cryptoes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - cryptoes/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - cryptoes/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - stocks
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - stocks/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - stocks/status
+  verbs:
+  - get
+  - patch
+  - update

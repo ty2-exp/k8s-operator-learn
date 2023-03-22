@@ -1,0 +1,5 @@
+metadata:
+  name: example-at
+spec:
+  str: "pending"
+  num: 123

@@ -1,0 +1,73 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.10.0
+  creationTimestamp: null
+  name: cryptoes.opendata.example.com
+spec:
+  group: opendata.example.com
+  names:
+    kind: Crypto
+    listKind: CryptoList
+    plural: cryptoes
+    singular: crypto
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    additionalPrinterColumns:
+      - name: "symbol"
+        jsonPath: .spec.symbol
+        type: string
+      - name: "price"
+        jsonPath: .status.price
+        type: string
+      - name: "state"
+        jsonPath: .status.state
+        type: string
+      - name: "updated at"
+        jsonPath: .status.updatedAt
+        type: string
+    schema:
+      openAPIV3Schema:
+        description: Crypto is the Schema for the cryptoes API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: CryptoSpec defines the desired state of Crypto
+            properties:
+              symbol:
+                description: Foo is an example field of Crypto. Edit crypto_types.go
+                  to remove/update
+                type: string
+            type: object
+          status:
+            description: CryptoStatus defines the observed state of Crypto
+            properties:
+              state:
+                description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                  of cluster Important: Run "make" to regenerate code after modifying
+                  this file'
+                type: string
+              price:
+                type: string
+              updatedAt:
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

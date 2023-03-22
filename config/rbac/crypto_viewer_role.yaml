@@ -1,0 +1,27 @@
+# permissions for end users to view cryptoes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: crypto-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: test
+    app.kubernetes.io/part-of: test
+    app.kubernetes.io/managed-by: kustomize
+  name: crypto-viewer-role
+rules:
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - cryptoes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - opendata.example.com
+  resources:
+  - cryptoes/status
+  verbs:
+  - get
